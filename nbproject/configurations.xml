@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="data" displayName="data" projectFiles="true" root="data">
+      <logicalFolder name="Lab10x10" displayName="Lab10x10" projectFiles="true">
+        <itemPath>data/Lab10x10/bleu10x10.txt</itemPath>
+        <itemPath>data/Lab10x10/jaune10x10.txt</itemPath>
+        <itemPath>data/Lab10x10/rouge10x10.txt</itemPath>
+        <itemPath>data/Lab10x10/vert10x10.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab10x14" displayName="Lab10x14" projectFiles="true">
+        <itemPath>data/Lab10x14/bleu10x14.txt</itemPath>
+        <itemPath>data/Lab10x14/jaune10x14.txt</itemPath>
+        <itemPath>data/Lab10x14/rouge10x14.txt</itemPath>
+        <itemPath>data/Lab10x14/vert10x14.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab14x14" displayName="Lab14x14" projectFiles="true">
+        <itemPath>data/Lab14x14/bleu14x14.txt</itemPath>
+        <itemPath>data/Lab14x14/jaune14x14.txt</itemPath>
+        <itemPath>data/Lab14x14/rouge14x14.txt</itemPath>
+        <itemPath>data/Lab14x14/vert14x14.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab20x20" displayName="Lab20x20" projectFiles="true">
+        <itemPath>data/Lab20x20/bleu20x20.txt</itemPath>
+        <itemPath>data/Lab20x20/jaune20x20.txt</itemPath>
+        <itemPath>data/Lab20x20/rouge20x20.txt</itemPath>
+        <itemPath>data/Lab20x20/vert20x20.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab2x3" displayName="Lab2x3" projectFiles="true">
+        <itemPath>data/Lab2x3/bleu2x3.txt</itemPath>
+        <itemPath>data/Lab2x3/jaune2x3.txt</itemPath>
+        <itemPath>data/Lab2x3/rouge2x3.txt</itemPath>
+        <itemPath>data/Lab2x3/vert2x3.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab35x50" displayName="Lab35x50" projectFiles="true">
+        <itemPath>data/Lab35x50/bleu35x50.txt</itemPath>
+        <itemPath>data/Lab35x50/jaune35x50.txt</itemPath>
+        <itemPath>data/Lab35x50/rouge35x50.txt</itemPath>
+        <itemPath>data/Lab35x50/vert35x50.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab50x65" displayName="Lab50x65" projectFiles="true">
+        <itemPath>data/Lab50x65/bleu50x65.txt</itemPath>
+        <itemPath>data/Lab50x65/jaune50x65.txt</itemPath>
+        <itemPath>data/Lab50x65/rouge50x65.txt</itemPath>
+        <itemPath>data/Lab50x65/vert50x65.txt</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Lab8x8" displayName="Lab8x8" projectFiles="true">
+        <itemPath>data/Lab8x8/bleu8x8.txt</itemPath>
+        <itemPath>data/Lab8x8/jaune8x8.txt</itemPath>
+        <itemPath>data/Lab8x8/rouge8x8.txt</itemPath>
+        <itemPath>data/Lab8x8/vert8x8.txt</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <df root="." name="0">
+      <in>Labyrinthe.cpp</in>
+      <in>Piece.cpp</in>
+      <in>Porte.cpp</in>
+      <in>Principal.cpp</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0"
+                 commonFlags="-mtune=generic -march=x86-64 -std=c++11 -fstack-protector-strong"/>
+        <element flagsID="1" commonFlags="-std=c++11"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_C_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_CXX_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .</preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="Labyrinthe.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="Piece.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="Porte.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="Principal.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

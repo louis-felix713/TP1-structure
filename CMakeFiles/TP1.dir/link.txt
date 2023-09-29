@@ -1,0 +1,1 @@
+/usr/bin/g++  -std=c++11 -g3 -gdwarf-2 CMakeFiles/TP1.dir/Labyrinthe.cpp.o CMakeFiles/TP1.dir/Piece.cpp.o CMakeFiles/TP1.dir/Porte.cpp.o CMakeFiles/TP1.dir/Principal.cpp.o -o TP1 

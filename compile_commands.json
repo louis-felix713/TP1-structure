@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/etudiant/Documents/tp1",
+  "command": "/usr/bin/g++    -std=c++11 -g3 -gdwarf-2 -o CMakeFiles/TP1.dir/Labyrinthe.cpp.o -c /home/etudiant/Documents/tp1/Labyrinthe.cpp",
+  "file": "/home/etudiant/Documents/tp1/Labyrinthe.cpp"
+},
+{
+  "directory": "/home/etudiant/Documents/tp1",
+  "command": "/usr/bin/g++    -std=c++11 -g3 -gdwarf-2 -o CMakeFiles/TP1.dir/Piece.cpp.o -c /home/etudiant/Documents/tp1/Piece.cpp",
+  "file": "/home/etudiant/Documents/tp1/Piece.cpp"
+},
+{
+  "directory": "/home/etudiant/Documents/tp1",
+  "command": "/usr/bin/g++    -std=c++11 -g3 -gdwarf-2 -o CMakeFiles/TP1.dir/Porte.cpp.o -c /home/etudiant/Documents/tp1/Porte.cpp",
+  "file": "/home/etudiant/Documents/tp1/Porte.cpp"
+},
+{
+  "directory": "/home/etudiant/Documents/tp1",
+  "command": "/usr/bin/g++    -std=c++11 -g3 -gdwarf-2 -o CMakeFiles/TP1.dir/Principal.cpp.o -c /home/etudiant/Documents/tp1/Principal.cpp",
+  "file": "/home/etudiant/Documents/tp1/Principal.cpp"
+}
+]
