@@ -26,15 +26,37 @@ namespace TP1
     }
 
     Labyrinthe::Labyrinthe(const Labyrinthe& source){
-      this->depart = source.depart;
-      this->arrivee = source.arrivee;
-      this->dernier = source.dernier;
+      this->dernier = new NoeudListePieces();
+      this->dernier->suivant = dernier;
+      NoeudListePieces* sentinelleThis = this->dernier;
+      NoeudListePieces* sentinelleSource = source.dernier;
+      
+      do {
+          sentinelleThis->piece = Piece (sentinelleSource->piece);
+          sentinelleThis->suivant = new NoeudListePieces();
+          if (sentinelleSource->suivant == source.dernier) {
+              sentinelleThis->suivant = this->dernier;
+          }
+          sentinelleThis = sentinelleThis->suivant;
+          sentinelleSource = sentinelleSource->suivant;
+          
+        }while(source.dernier != sentinelleSource);
     }
 
     Labyrinthe::~Labyrinthe() {
-      delete this->depart;
-      delete this->dernier;
-      delete this->arrivee;
+      if (dernier != nullptr) {
+          NoeudListePieces* sentinelle = dernier->suivant;
+          NoeudListePieces* toDelete = sentinelle;
+          while(sentinelle != dernier) {
+              sentinelle = sentinelle->suivant;
+              toDelete->suivant = nullptr;
+              delete toDelete;
+              toDelete = sentinelle;
+          }
+          dernier->suivant = nullptr;
+          delete dernier;
+      }
+      dernier = nullptr;
     }
 
     const Labyrinthe& Labyrinthe::operator =(const Labyrinthe& source) {
@@ -249,20 +271,16 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
 
     int Labyrinthe::solutionner(Couleur joueur) {
       std::queue<Piece*> queue = std::queue<Piece*>();
-      Labyrinthe::NoeudListePieces* sentinelle;
-      Labyrinthe::NoeudListePieces* temp;
+      Labyrinthe::NoeudListePieces* sentinelle = dernier;
       depart->setDistanceDuDebut (0);
       arrivee->setDistanceDuDebut (-1);
       queue.push(depart);
-
-      sentinelle = dernier->suivant;
-        temp = sentinelle;
-        dernier->suivant = nullptr;
-        while(sentinelle){
-            sentinelle->piece.setParcourue (false);
-            sentinelle = sentinelle->suivant;
-        }
-        dernier->suivant = temp;
+      
+      do {
+          sentinelle->piece.setParcourue (false);
+          sentinelle = sentinelle->suivant;
+        } while(sentinelle != dernier);
+            
 
       while(queue.size () && arrivee != queue.front()) {
           Piece* chemin = queue.front();
@@ -276,11 +294,9 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
               }
           }
 
-            sentinelle = dernier->suivant;
-            temp = sentinelle;
-            dernier->suivant = nullptr;
-            while(sentinelle){
-                if (sentinelle->piece.getNom () != chemin->getNom () && !sentinelle->piece.getParcourue ()) {
+          sentinelle = dernier;
+          do {
+              if (sentinelle->piece.getNom () != chemin->getNom () && !sentinelle->piece.getParcourue ()) {
                   for (Porte porte : sentinelle->piece.getPortes ()) {
                       if(porte.getCouleur () == joueur && porte.getDestination () == chemin) {
                           sentinelle->piece.setDistanceDuDebut (chemin->getDistanceDuDebut () + 1);
@@ -290,8 +306,7 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
                   }
                 }
             sentinelle = sentinelle->suivant;
-            }
-            dernier->suivant = temp;
+            } while(sentinelle != dernier);
 
         }
       return arrivee->getDistanceDuDebut();
@@ -361,12 +376,13 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
         if (nom == "") throw (std::invalid_argument("Le nom est invalide"));
         if (dernier != nullptr) {
             Labyrinthe::NoeudListePieces* sentinelle = dernier;
-            while (sentinelle != nullptr && sentinelle->suivant != dernier) {
+            do {
                 if (sentinelle->suivant->piece.getNom () == nom) {
                     return sentinelle->suivant;
                 }
                 sentinelle = sentinelle->suivant;
-            }
+              } while (sentinelle != nullptr && sentinelle->suivant != dernier) ;
+                
             if (dernier->piece.getNom() == nom) {
                 return dernier;  
             }

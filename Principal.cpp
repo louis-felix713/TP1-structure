@@ -14,7 +14,9 @@ using namespace TP1;
 
 int main()
 {
-  
+  try {
+      
+    
         Labyrinthe lab;
 
         string reponse = "";
@@ -88,6 +90,9 @@ int main()
 		default:
 			cout << endl << "Le joueur gagnant: Aucun!!" << endl << endl; break;
 		}
+    }catch(exception & e) {
+        
+      }
 
 
 	return 0;
