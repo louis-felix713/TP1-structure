@@ -1,7 +1,7 @@
 /**
  * \file Labyrinthe.cpp
  * \brief Le code des méthodes membres et privés de la classe Labyrinthe.
- * \author IFT-2008, Étudiant(e)
+ * \author IFT-2008, Louis-Felix Veillette (537 183 048)
  * \version 0.1
  * \date Automne 2023
  * 
@@ -18,13 +18,13 @@ namespace TP1
 // --------------------------
 //	Méthodes à implémenter
 // --------------------------
-
+    // \brief Constructeur de la classe Labyrinthe
     Labyrinthe::Labyrinthe(){
       this->depart = nullptr;
       this->arrivee = nullptr;
       this->dernier = nullptr;
     }
-
+    // \brief Constructeur de copie de la classe Labyrinthe
     Labyrinthe::Labyrinthe(const Labyrinthe& source){
       this->dernier = new NoeudListePieces();
       this->dernier->suivant = dernier;
@@ -41,8 +41,12 @@ namespace TP1
           sentinelleSource = sentinelleSource->suivant;
           
         }while(source.dernier != sentinelleSource);
+        this->placeDepart (source.depart->getNom ());
+        this->placeArrivee (source.arrivee->getNom ());
+                
     }
-
+    
+    // \brief Destructeur de la classe labyrinthe
     Labyrinthe::~Labyrinthe() {
       if (dernier != nullptr) {
           NoeudListePieces* sentinelle = dernier->suivant;
@@ -58,7 +62,8 @@ namespace TP1
       }
       dernier = nullptr;
     }
-
+    
+    // \brief Methode de l'operateur =
     const Labyrinthe& Labyrinthe::operator =(const Labyrinthe& source) {
       if (this != &source) {
         this->depart = source.depart;
@@ -207,12 +212,14 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
  }
 
 /**
+ * \brief Ajoute une porte entre deux pieces
  * \fn	Labyrinthe::ajoutePassage(Couleur couleur, int i1, int j1, int i2, int j2)
  * \param[in]	Couleur couleur Couleur de la porte à ajouter
- * \param[in]	int i1
- * \param[in]	int j1
- * \param[in]	int i2
- * \param[in]	int j2
+ * \param[in]	int i1, la ligne ou se trouve la piece 1 
+ * \param[in]	int j1, la colonne ou se trouve la piece 1
+ * \param[in]	int i2, la ligne ou se trouve la piece 2
+ * \param[in]	int j2, la colonne ou se trouve la piece 2
+ * \post Une porte est ajoute a une piece vers l'autre
  */
  void Labyrinthe::ajoutePassage(Couleur couleur, int i1, int j1, int i2, int j2)
  {
@@ -268,7 +275,11 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
 // -------------------------------
 //	Autres méthodes à implémenter
 // -------------------------------
-
+    /**
+     * \brief Trouve le nombre de piece qu'un joueur doit parcourir entre le depart et l'arrivee du labyrinthe
+     * \param[in] joueur La couleur du joueur 
+     * \return le nombre de piece parcouru avant l'arrivee ou -1 si le joueur ne peut pas se rendre. 
+     */
     int Labyrinthe::solutionner(Couleur joueur) {
       std::queue<Piece*> queue = std::queue<Piece*>();
       Labyrinthe::NoeudListePieces* sentinelle = dernier;
@@ -346,7 +357,12 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
       }
 
     }
-
+    
+    /**
+     * \brief Verifie si une piece appartient au labyrinthe
+     * \param[in] La piece qui doit se faire trouver
+     * \return vra i si la piece appartient au labyrinthe, sinon retourne false
+     */
     bool Labyrinthe::appartient(const Piece& p) const {
       try {
           this->trouvePiece (p.getNom ());
@@ -355,7 +371,12 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
           return false;
       } 
     }
-
+    /**
+     * \brief Trouve dans le labyrinthe la piece de depart
+     * \param[in] nom, Le nom de la case depart
+     * \post la case depart est assigne au membre depart
+     * \exception si la case n est pas trouve ou si le nom est invalide
+     */
     void Labyrinthe::placeDepart(const std::string& nom) {
       try {
           this->depart = &trouvePiece(nom)->piece;
@@ -363,7 +384,12 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
           std::cout << "Erreur";
       }
     }
-
+    /**
+     * \brief Trouve dans le labyrinthe la piece de fin
+     * \param[in] nom, Le nom de la case de fin
+     * \post la case fin est assigne au membre arrivee
+     * \exception si la case n est pas trouve ou si le nom est invalide
+     */
     void Labyrinthe::placeArrivee(const std::string& nom) {
       try {
           this->arrivee = &trouvePiece(nom)->piece;
@@ -371,7 +397,12 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
           std::cout << "Erreur";
       }
     }
-
+    /**
+     * \brief Trouve une piece dans le labyrinthe par son nom
+     * \param[in] nom, Le nom de la piece a trouver
+     * \exception invalid_argument si le nom est invalide ou logic_error si elle est introuvable
+     * @return la piece du labyrinthe
+     */
     Labyrinthe::NoeudListePieces* Labyrinthe::trouvePiece(const std::string& nom) const {
         if (nom == "") throw (std::invalid_argument("Le nom est invalide"));
         if (dernier != nullptr) {

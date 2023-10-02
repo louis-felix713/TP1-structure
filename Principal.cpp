@@ -1,7 +1,7 @@
 /**
  * \file Principal.cpp
  * \brief Ce fichier contient un main pour tester le labyrinthe.
- * \author IFT-2008, Étudiant(e)
+ * \author IFT-2008, Louis-Felix Veillette (537 183 048)
  * \version 0.1
  * \date Automne 2023
  * 
@@ -15,8 +15,6 @@ using namespace TP1;
 int main()
 {
   try {
-      
-    
         Labyrinthe lab;
 
         string reponse = "";
@@ -93,7 +91,5 @@ int main()
     }catch(exception & e) {
         
       }
-
-
 	return 0;
 }
