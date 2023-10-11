@@ -39,10 +39,7 @@ namespace TP1
      * \param[in] source, la piece a copie
      */
     Piece::Piece(const Piece& source){
-      this->nom = source.nom;
-      this->distanceDuDebut = source.distanceDuDebut;
-      this->parcourue = source.parcourue;
-      this->portes = source.portes;
+      *this = source;
     }
     /**
      * Destructeur d'une piece
@@ -57,7 +54,11 @@ namespace TP1
      */
     const Piece& Piece::operator =(const Piece& source){
       if (this != &source) {
-          this->portes = source.portes;
+          this->portes = std::list<Porte>();
+          for(Porte porte : source.portes) {
+              Porte nouvelle = Porte(porte);
+              this->portes.push_back (nouvelle);
+          }
           this->nom = source.nom;
           this->parcourue = source.parcourue;
           this->distanceDuDebut = source.distanceDuDebut;

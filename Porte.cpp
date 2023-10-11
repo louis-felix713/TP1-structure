@@ -33,8 +33,7 @@ namespace TP1
      * \param[in] source, la porte a copie
      */
     Porte::Porte(const Porte& source){
-      this->color = source.color;
-      this->destination = source.destination;
+      *this = source;
     }
     /**
      * \brief Destructeur
@@ -48,7 +47,12 @@ namespace TP1
      * \return notre porte
      */
     const Porte& Porte::operator =(const Porte& source) {
-        return *this;
+      if (this != &source) {
+          this->color = source.color;
+          this->destination = source.destination;
+      }
+      
+      return *this;
     }
     /**
      * \brief operateur egale de comparaison

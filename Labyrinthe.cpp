@@ -26,24 +26,7 @@ namespace TP1
     }
     // \brief Constructeur de copie de la classe Labyrinthe
     Labyrinthe::Labyrinthe(const Labyrinthe& source){
-      this->dernier = new NoeudListePieces();
-      this->dernier->suivant = dernier;
-      NoeudListePieces* sentinelleThis = this->dernier;
-      NoeudListePieces* sentinelleSource = source.dernier;
-      
-      do {
-          sentinelleThis->piece = Piece (sentinelleSource->piece);
-          sentinelleThis->suivant = new NoeudListePieces();
-          if (sentinelleSource->suivant == source.dernier) {
-              sentinelleThis->suivant = this->dernier;
-          }
-          sentinelleThis = sentinelleThis->suivant;
-          sentinelleSource = sentinelleSource->suivant;
-          
-        }while(source.dernier != sentinelleSource);
-        this->placeDepart (source.depart->getNom ());
-        this->placeArrivee (source.arrivee->getNom ());
-                
+      *this = source;       
     }
     
     // \brief Destructeur de la classe labyrinthe
@@ -65,11 +48,28 @@ namespace TP1
     
     // \brief Methode de l'operateur =
     const Labyrinthe& Labyrinthe::operator =(const Labyrinthe& source) {
-      if (this != &source) {
-        this->depart = source.depart;
-        this->arrivee = source.arrivee;
-        this->dernier = source.dernier;
-      }
+      this->dernier = new NoeudListePieces();
+      this->dernier->suivant = dernier;
+      NoeudListePieces* sentinelleThis = this->dernier;
+      NoeudListePieces* sentinelleSource = source.dernier;
+      
+      do {
+          sentinelleThis->piece = Piece (sentinelleSource->piece);
+          sentinelleThis->suivant = new NoeudListePieces();
+          if (sentinelleSource->suivant == source.dernier) {
+              sentinelleThis->suivant = this->dernier;
+          }
+          sentinelleThis = sentinelleThis->suivant;
+          sentinelleSource = sentinelleSource->suivant;
+          
+        }while(source.dernier != sentinelleSource);
+        this->placeDepart (source.depart->getNom ());
+        this->placeArrivee (source.arrivee->getNom ());
+        
+        sentinelleThis = nullptr;
+        sentinelleSource = nullptr;
+        delete sentinelleThis;
+        delete sentinelleSource;
 
         return *this;
     }
