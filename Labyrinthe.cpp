@@ -320,6 +320,8 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
             } while(sentinelle != dernier);
 
         }
+      sentinelle = nullptr;
+      delete sentinelle;
       return arrivee->getDistanceDuDebut();
 
     }
@@ -416,7 +418,7 @@ void Labyrinthe::chargeLabyrinthe(Couleur couleur, std::ifstream &entree)
                 
             if (dernier->piece.getNom() == nom) {
                 return dernier;  
-            }
+        }
         }
 
         throw (logic_error("La piece est introuvable"));
